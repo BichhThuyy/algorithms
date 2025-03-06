@@ -5,4 +5,6 @@ void TaxiFeeCalculate();
 void SumDigitCalculateUseString();
 void SumDigitCalculateUseArithmetic();
 void CheckSymmetricNumberUseString();
-void CheckSymmetricNumberUseArimethic();
+void CheckSymmetricNumberUseArithmetic();
+void CountDigitUseString();
+void CountDigitUseArithmetic();
