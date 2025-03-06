@@ -1,0 +1,21 @@
+# Visual Studio-specific folders
+.vs/
+x64/
+Debug/
+Release/
+
+# Visual Studio project files (optional)
+*.sln  # Solution file (can be ignored if sharing only source code)
+*.vcxproj*
+*.filters
+*.user
+
+# Build artifacts
+*.exe
+*.obj
+*.o
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.ipch
