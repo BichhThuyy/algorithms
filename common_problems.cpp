@@ -3,6 +3,7 @@
 #include <format>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "CommonProblemHeader.h"
 #include "ConstantHeader.h"
 
@@ -43,8 +44,19 @@ void TaxiFeeCalculate() {
 
 void SumDigitCalculateUseString() {
 	int nnumber = 0;
-	cout << "Enter the integer: ";
+	cout << "Enter an integer > 0: ";
 	cin >> nnumber;
+
+	while (true) {
+		if (cin.fail() || nnumber <= 0) {
+			cin.clear();
+			cin.ignore(1000, '/n');
+			cout << "Invalid input, please enter an integer > 0" << endl;
+		}
+		else {
+			break;
+		}
+	}
 
 	int sum_digit = 0;
 	string number_str = to_string(nnumber);
@@ -79,4 +91,54 @@ void SumDigitCalculateUseArithmetic() {
 	}
 
 	cout << "Total sum digit: " << nSum << endl;
+}
+
+void CheckSymmetricNumberUseString() {
+	int nnumber = 0;
+	while (true) {
+		cout << "Enter an integer > 0: ";
+		cin >> nnumber;
+		if (cin.fail() || nnumber <= 0) {
+			cin.clear();
+			cin.ignore(1000, '/n');
+			cout << "Invalid number, please enter an integer > 0" << endl;
+		}
+		else {
+			break;
+		}
+	}
+
+	string str_reversed_number = to_string(nnumber);
+	reverse(str_reversed_number.begin(), str_reversed_number.end());
+	cout << "The reversed number is: " << str_reversed_number << endl;
+	cout << "Is this a symetric number: " << (to_string(nnumber) == str_reversed_number ? "YES" : "NO") << endl;
+}
+
+void CheckSymmetricNumberUseArimethic() {
+	int nnumber = 0;
+	while (true) {
+		cout << "Enter an integer > 0: ";
+		cin >> nnumber;
+		if (cin.fail() || nnumber <= 0) {
+			cin.clear();
+			cin.ignore(1000, '/n');
+			cout << "Invalid number, please enter an integer > 0" << endl;
+		}
+		else {
+			break;
+		}
+	}
+
+	int input = nnumber;
+	int nReversedNum = 0;
+	int nRem = 0;
+	while (input != 0) {
+		nRem = input % 10;
+		nReversedNum = (nReversedNum * 10) + nRem;
+		input = input / 10;
+	}
+
+	cout << "The reversed number is: " << nReversedNum << endl;
+	cout << "Is this a symetric number: " << (nnumber == nReversedNum ? "YES" : "NO") << endl;
+
 }
