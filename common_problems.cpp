@@ -2,6 +2,7 @@
 #include <chrono>
 #include <format>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -202,4 +203,153 @@ void FindLeapYears() {
 	for (int year : vLeapYears) {
 		cout << "Leap year: " << year << endl;
 	}
+}
+
+void CheckValidDay() {
+	string sDate;
+	cout << "Endter a date format yyyy/MM/dd: ";
+	cin >> sDate;
+
+	stringstream ssDate(sDate);
+	string token;
+	vector<int> parts;
+	while (getline(ssDate, token, '/')) {
+		parts.push_back(stoi(token));
+	}
+
+	int year = parts[0];
+	int month = parts[1];
+	int day = parts[2];
+	if (year <= 0) {
+		cout << "Invalid year" << endl;
+		return;
+	}
+	if (month < 1 || month > 12) {
+		cout << "Invalid month" << endl;
+		return;
+	}
+
+	int nMaxDays;
+	vector<int> monthHas30Days = { 4, 6, 9, 11 };
+	vector<int> monthHas31Days = { 1, 3, 5, 7, 8, 10, 12 };
+	if (month == 2) {
+		nMaxDays = ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) ? 29 : 30;
+	}
+	if (count(monthHas30Days.begin(), monthHas30Days.end(), month) > 0) {
+		nMaxDays = 30;
+	}
+	if (count(monthHas31Days.begin(), monthHas31Days.end(), month) > 0) {
+		nMaxDays = 31;
+	}
+	if (day < 1 || day > nMaxDays) {
+		cout << "Invalid day" << endl;
+		return;
+	}
+	cout << "Valid day" << endl;
+}
+
+// Find the previous day and the next day of a day
+int FindTotalDayOfAMonth(int month, int year) {
+	int nMaxDays;
+	vector<int> monthHas30Days = { 4, 6, 9, 11 };
+	vector<int> monthHas31Days = { 1, 3, 5, 7, 8, 10, 12 };
+	if (month == 2) {
+		nMaxDays = ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) ? 29 : 30;
+	}
+	if (count(monthHas30Days.begin(), monthHas30Days.end(), month) > 0) {
+		nMaxDays = 30;
+	}
+	if (count(monthHas31Days.begin(), monthHas31Days.end(), month) > 0) {
+		nMaxDays = 31;
+	}
+	return nMaxDays;
+}
+
+bool CheckValidDay(int year, int month, int day) {
+	if (year <= 0) {
+		return false;
+	}
+	if (month < 1 || month > 12) {
+		return false;
+	}
+
+	int nMaxDays;
+	vector<int> monthHas30Days = { 4, 6, 9, 11 };
+	vector<int> monthHas31Days = { 1, 3, 5, 7, 8, 10, 12 };
+	if (month == 2) {
+		nMaxDays = ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) ? 29 : 30;
+	}
+	if (count(monthHas30Days.begin(), monthHas30Days.end(), month) > 0) {
+		nMaxDays = 30;
+	}
+	if (count(monthHas31Days.begin(), monthHas31Days.end(), month) > 0) {
+		nMaxDays = 31;
+	}
+	if (day < 1 || day > nMaxDays) {
+		return false;
+	}
+	return true;
+}
+
+void FindPreviousDay() {
+	string sDay;
+	cout << "Enter a day format yyyy/MM/dd: ";
+	cin >> sDay;
+
+	stringstream ssDay(sDay);
+	string token;
+	vector<int> parts;
+	while (getline(ssDay, token, '/')) {
+		parts.push_back(stoi(token));
+	}
+
+	int year = parts[0], month = parts[1], day = parts[2];
+	if (!CheckValidDay(year, month, day)) {
+		cout << "Invalid day" << endl;
+		return;
+	}
+	int prevDay = day - 1, prevMonth = month, prevYear = year;
+	if (prevDay <= 0) {
+		prevMonth = month - 1;
+		if (prevMonth <= 0) {
+			prevYear = year - 1;
+			if (prevYear <= 0) {
+				cout << "Invalid day" << endl;
+				return;
+			}
+			prevMonth = 12;
+		}
+		prevDay = FindTotalDayOfAMonth(prevMonth, prevYear);
+	}
+	cout << "Previous day: " << prevYear << '/' << prevMonth << '/' << prevDay;
+}
+
+void FindNextDay() {
+	string sDay;
+	cout << "Enter a day format yyyy/MM/dd: ";
+	cin >> sDay;
+
+	stringstream ssDay(sDay);
+	string token;
+	vector<int> parts;
+	while (getline(ssDay, token, '/')) {
+		parts.push_back(stoi(token));
+	}
+
+	int year = parts[0], month = parts[1], day = parts[2];
+	if (!CheckValidDay(year, month, day)) {
+		cout << "Invalid day";
+		return;
+	}
+	int nextDay = day + 1, nextMonth = month, nextYear = year;
+	int curTotalDays = FindTotalDayOfAMonth(month, year);
+	if (nextDay > curTotalDays) {
+		nextDay = 1;
+		nextMonth = month + 1;
+		if (nextMonth > 12) {
+			nextMonth = 1;
+			nextYear = year + 1;
+		}
+	}
+	cout << "Next day: " << nextYear << '/' << nextMonth << '/' << nextDay;
 }

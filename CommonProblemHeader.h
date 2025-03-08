@@ -12,3 +12,6 @@ void FindFactorial();
 void FindFactorialRecursive();
 void CheckNarcissisticNumber();
 void FindLeapYears();
+void CheckValidDay();
+void FindPreviousDay();
+void FindNextDay();
