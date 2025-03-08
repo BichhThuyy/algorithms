@@ -10,15 +10,32 @@
 using namespace std;
 using namespace common_problem_constant;
 
-int CheckInput() {
+int CheckInputLargerThanZero() {
 	int nnumber = 0;
 	while (true) {
 		cout << "Enter an integer > 0: ";
 		cin >> nnumber;
 		if (cin.fail() || nnumber <= 0) {
 			cin.clear();
-			cin.ignore(1000, '/n');
+			cin.ignore(1000, '\n');
 			cout << "Invalid number, please enter an integer > 0" << endl;
+		}
+		else {
+			break;
+		}
+	}
+	return nnumber;
+}
+
+int CheckInputLargerOrEqualZero() {
+	int nnumber;
+	while (true) {
+		cout << "Enter an integer >= 0: ";
+		cin >> nnumber;
+		if (cin.fail() || nnumber < 0) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Invalid number" << endl;
 		}
 		else {
 			break;
@@ -60,7 +77,7 @@ void TaxiFeeCalculate() {
 }
 
 void SumDigitCalculateUseString() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	int sum_digit = 0;
 	string number_str = to_string(nnumber);
 	for (char digit : number_str) {
@@ -71,7 +88,7 @@ void SumDigitCalculateUseString() {
 }
 
 void SumDigitCalculateUseArithmetic() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	int nRem, nSum = 0;
 	while (nnumber != 0) {
 		nRem = nnumber % 10;
@@ -83,7 +100,7 @@ void SumDigitCalculateUseArithmetic() {
 }
 
 void CheckSymmetricNumberUseString() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	string str_reversed_number = to_string(nnumber);
 	reverse(str_reversed_number.begin(), str_reversed_number.end());
 	cout << "The reversed number is: " << str_reversed_number << endl;
@@ -91,7 +108,7 @@ void CheckSymmetricNumberUseString() {
 }
 
 void CheckSymmetricNumberUseArithmetic() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	int input = nnumber;
 	int nReversedNum = 0;
 	int nRem = 0;
@@ -107,17 +124,47 @@ void CheckSymmetricNumberUseArithmetic() {
 }
 
 void CountDigitUseString() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	string str_number = to_string(nnumber);
 	cout << "The number of digits is: " << str_number.length() << endl;
 }
 
 void CountDigitUseArithmetic() {
-	int nnumber = CheckInput();
+	int nnumber = CheckInputLargerThanZero();
 	int count = 0;
 	while (nnumber != 0) {
 		nnumber = nnumber / 10;
 		count += 1;
 	}
 	cout << "The number of digits is: " << count << endl;
+}
+
+void FindFactorial() {
+	int nnumber = CheckInputLargerOrEqualZero();
+	if (nnumber == 0) {
+		cout << "Factorial of " << nnumber << " is: " << 1 << endl;
+	}
+	else {
+		int nresult = nnumber;
+		while (nnumber > 1) {
+			nresult *= nnumber - 1;
+			nnumber -= 1;
+		}
+		cout << "Factorial is: " << nresult << endl;
+	}
+}
+
+
+int RecursiveFactorial(int input) {
+	if (input == 0) {
+		return 1;
+	}
+	else {
+		return input * RecursiveFactorial(input - 1);
+	}
+};
+
+void FindFactorialRecursive() {
+	int nnumber = CheckInputLargerOrEqualZero();
+	cout << "Factorial is: " << RecursiveFactorial(nnumber) << endl;
 }

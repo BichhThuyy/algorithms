@@ -8,3 +8,5 @@ void CheckSymmetricNumberUseString();
 void CheckSymmetricNumberUseArithmetic();
 void CountDigitUseString();
 void CountDigitUseArithmetic();
+void FindFactorial();
+void FindFactorialRecursive();
