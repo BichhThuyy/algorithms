@@ -10,3 +10,4 @@ void CountDigitUseString();
 void CountDigitUseArithmetic();
 void FindFactorial();
 void FindFactorialRecursive();
+void CheckNarcissisticNumber();

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 #include "CommonProblemHeader.h"
 #include "ConstantHeader.h"
 
@@ -167,4 +168,21 @@ int RecursiveFactorial(int input) {
 void FindFactorialRecursive() {
 	int nnumber = CheckInputLargerOrEqualZero();
 	cout << "Factorial is: " << RecursiveFactorial(nnumber) << endl;
+}
+
+void CheckNarcissisticNumber() {
+	int nnumber = CheckInputLargerThanZero();
+	int nCount = 0, nNum = nnumber;
+	while (nNum > 0) {
+		nNum = nNum / 10;
+		nCount += 1;
+	}
+
+	int nSum = 0;
+	nNum = nnumber;
+	while (nNum > 0) {
+		nSum += pow(nNum % 10, nCount);
+		nNum = nNum / 10;
+	}
+	cout << "Is this number a narsissitic number: " << (nSum == nnumber ? "Yes" : "No") << endl;
 }
