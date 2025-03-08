@@ -186,3 +186,20 @@ void CheckNarcissisticNumber() {
 	}
 	cout << "Is this number a narsissitic number: " << (nSum == nnumber ? "Yes" : "No") << endl;
 }
+
+void FindLeapYears() {
+	int nStart, nEnd;
+	cout << "Enter start year and end year: ";
+	cin >> nStart >> nEnd;
+
+	vector<int> vLeapYears;
+	for (int year = nStart; year <= nEnd; year++) {
+		if ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) {
+			vLeapYears.push_back(year);
+		}
+	}
+
+	for (int year : vLeapYears) {
+		cout << "Leap year: " << year << endl;
+	}
+}

@@ -11,3 +11,4 @@ void CountDigitUseArithmetic();
 void FindFactorial();
 void FindFactorialRecursive();
 void CheckNarcissisticNumber();
+void FindLeapYears();
