@@ -16,3 +16,7 @@ void CheckValidDay();
 void FindPreviousDay();
 void FindNextDay();
 void FindOrderOfDay();
+void CheckPrimeInteger();
+void FindGreatestCommonDivisor();
+void CountDivisor();
+void CheckPerfectInteger();

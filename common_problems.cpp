@@ -393,3 +393,64 @@ void FindOrderOfDay() {
 	}
 	cout << "The order of day is: " << total_prev_days + day;
 }
+
+void CheckPrimeInteger() {
+	int nNum = CheckInputLargerThanZero();
+	bool isPrime = true;
+	for (int i = 2; i <= nNum; i++) {
+		if ((nNum % i == 0) && (i != nNum)) {
+			isPrime = false;
+			break;
+		}
+	}
+	cout << "Is prime: " << (isPrime ? "Yes" : "No");
+}
+
+void FindGreatestCommonDivisor() {
+	int a = CheckInputLargerThanZero();
+	int b = CheckInputLargerThanZero();
+	
+	// swap a and b if a < b to make sure a is always the bigest
+	if (a < b) {
+		int tem = a;
+		a = b;
+		b = tem;
+	}
+	
+	vector<int> b_divisor;
+	for (int i = 1; i <= b; i++) {
+		if (b % i == 0) {
+			b_divisor.push_back(i);
+		}
+	}
+	int greates_common_divisor = 1;
+	for (int div : b_divisor) {
+		if ((a % div == 0) && (div > greates_common_divisor)) {
+			greates_common_divisor = div;
+		}
+	}
+	cout << "The greates common divisor of " << a << " and " << b << " is: " << greates_common_divisor;
+}
+
+void CountDivisor() {
+	int nNum = CheckInputLargerThanZero();
+	int count = 0;
+	for (int i = 1; i <= nNum; i++) {
+		if (nNum % i == 0) {
+			count++;
+		}
+	}
+	cout << "The number of divisors are: " << count;
+}
+
+void CheckPerfectInteger() {
+	int nNum = CheckInputLargerThanZero();
+	cout << "nNum: " << nNum;
+	int nSum = 0;
+	for (int i = 1; i <= nNum; i++) {
+		if ((nNum % i == 0) && (i != nNum)) {
+			nSum += i;
+		}
+	}
+	cout << "Is this perfect number: " << (nSum == nNum ? "Yes" : "No");
+}
