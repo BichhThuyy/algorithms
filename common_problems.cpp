@@ -277,7 +277,7 @@ bool CheckValidDay(int year, int month, int day) {
 	vector<int> monthHas30Days = { 4, 6, 9, 11 };
 	vector<int> monthHas31Days = { 1, 3, 5, 7, 8, 10, 12 };
 	if (month == 2) {
-		nMaxDays = ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) ? 29 : 30;
+		nMaxDays = ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) ? 28 : 29;
 	}
 	if (count(monthHas30Days.begin(), monthHas30Days.end(), month) > 0) {
 		nMaxDays = 30;
@@ -352,4 +352,44 @@ void FindNextDay() {
 		}
 	}
 	cout << "Next day: " << nextYear << '/' << nextMonth << '/' << nextDay;
+}
+
+// Find order of a day in year
+void FindOrderOfDay() {
+	string sDay;
+	cout << "Enter a day format yyyy/MM/dd: ";
+	cin >> sDay;
+
+	stringstream ssDay(sDay);
+	string token;
+	vector<int> parts;
+	while (getline(ssDay, token, '/')) {
+		parts.push_back(stoi(token));
+	}
+
+	int year = parts[0], month = parts[1], day = parts[2];
+	if (!CheckValidDay(year, month, day)) {
+		cout << "Invalid day";
+		return;
+	}
+
+	if (month == 1) {
+		cout << "The order of day is: " << day;
+		return;
+	}
+
+	vector<int> v_total_days_of_month_ly = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	vector<int> v_total_days_of_month = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	int total_prev_days = 0;
+	if ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) {
+		for (int i = 0; i < month - 1; i++) {
+			total_prev_days += v_total_days_of_month_ly[i];
+		}
+	}
+	else {
+		for (int i = 0; i < month - 1; i++) {
+			total_prev_days += v_total_days_of_month[i];
+		}
+	}
+	cout << "The order of day is: " << total_prev_days + day;
 }

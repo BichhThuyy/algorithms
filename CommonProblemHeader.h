@@ -15,3 +15,4 @@ void FindLeapYears();
 void CheckValidDay();
 void FindPreviousDay();
 void FindNextDay();
+void FindOrderOfDay();
