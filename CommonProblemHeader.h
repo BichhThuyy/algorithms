@@ -21,3 +21,4 @@ void FindGreatestCommonDivisor();
 void CountDivisor();
 void CheckPerfectInteger();
 void CalculateSn();
+void CalculateFibonaci();

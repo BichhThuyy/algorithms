@@ -468,3 +468,20 @@ void CalculateSn() {
 	}
 	cout << "Result: " << nSum;
 }
+
+// Fibonaci
+int Fibonaci(int n) {
+	if ((n == 0) || (n == 1)) {
+		return 1;
+	}
+	else {
+		return Fibonaci(n - 1) + Fibonaci(n - 2);
+	}
+}
+
+void CalculateFibonaci() {
+	int nNum = CheckInputLargerThanZero();
+	for (int i = 0; i <= nNum; i++) {
+		cout << Fibonaci(i) << ", ";
+	}
+}
