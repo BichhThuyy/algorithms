@@ -454,3 +454,17 @@ void CheckPerfectInteger() {
 	}
 	cout << "Is this perfect number: " << (nSum == nNum ? "Yes" : "No");
 }
+
+void CalculateSn() {
+	int nNum = CheckInputLargerThanZero();
+
+	int nSum = 0;
+	for (int i = 0; i <= nNum; i++) {
+		int nSumj = 0;
+		for (int j = 0; j <= i; j++) {
+			nSumj += j;
+		}
+		nSum += nSumj;
+	}
+	cout << "Result: " << nSum;
+}

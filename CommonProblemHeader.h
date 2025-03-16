@@ -20,3 +20,4 @@ void CheckPrimeInteger();
 void FindGreatestCommonDivisor();
 void CountDivisor();
 void CheckPerfectInteger();
+void CalculateSn();
